@@ -1,0 +1,43 @@
+11:52:43.149 warn: Failed to process the job '73': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:27.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'AuditingInfo_CreatedBy', table 'swo-pps-product-sql-db-at-dev.ProductCatalog.Tags'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalEndExecuteNonQuery(IAsyncResult asyncResult, Boolean isInternal, String endMethod)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryInternal(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryAsync(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<InternalExecuteNonQueryAsync>b__210_1(IAsyncResult result)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlRawAsync(DatabaseFacade databaseFacade, String sql, IEnumerable`1 parameters, CancellationToken cancellationToken)
+   at EFCore.BulkExtensions.SqlAdapters.SqlServer.SqlServerAdapter.MergeAsync[T](DbContext context, Type type, IEnumerable`1 entities, TableInfo tableInfo, OperationType operationType, Action`1 progress, Boolean isAsync, CancellationToken cancellationToken)
+   at EFCore.BulkExtensions.SqlAdapters.SqlServer.SqlServerAdapter.MergeAsync[T](DbContext context, Type type, IEnumerable`1 entities, TableInfo tableInfo, OperationType operationType, Action`1 progress, Boolean isAsync, CancellationToken cancellationToken)
+   at EFCore.BulkExtensions.SqlAdapters.SqlServer.SqlServerAdapter.MergeAsync[T](DbContext context, Type type, IEnumerable`1 entities, TableInfo tableInfo, OperationType operationType, Action`1 progress, CancellationToken cancellationToken)
+   at EFCore.BulkExtensions.SqlBulkOperation.MergeAsync[T](DbContext context, Type type, IEnumerable`1 entities, TableInfo tableInfo, OperationType operationType, Action`1 progress, CancellationToken cancellationToken)
+   at EFCore.BulkExtensions.DbContextBulkTransaction.ExecuteAsync[T](DbContext context, Type type, IEnumerable`1 entities, OperationType operationType, BulkConfig bulkConfig, Action`1 progress, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass20_0`1.<<ExecuteInTransactionAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass24_0`2.<<ExecuteInTransactionAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.ExecutionStrategyExtensions.<>c__DisplayClass24_0`2.<<ExecuteInTransactionAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.<>c__DisplayClass30_0`2.<<ExecuteAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteImplementationAsync[TState,TResult](Func`4 operation, Func`4 verifySucceeded, TState state, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.ExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at PPS.Product.Importer.App.Importer.ProductImport.ProductImporter.SaveTagsToDb(List`1 tagsToSave, CancellationToken cancellationToken) in C:\git\pps-product\src\app\PPS.Product.Importer.App\Importer\ProductImport\ProductImporter.cs:line 282
+   at PPS.Product.Importer.App.Importer.ProductImport.ProductImporter.ImportTagsFromCsv(List`1 tagsJsons, CancellationToken cancellationToken) in C:\git\pps-product\src\app\PPS.Product.Importer.App\Importer\ProductImport\ProductImporter.cs:line 267
+   at PPS.Product.Importer.App.Importer.ProductImport.ProductImporter.InitialImportAsync(CancellationToken cancellationToken) in C:\git\pps-product\src\app\PPS.Product.Importer.App\Importer\ProductImport\ProductImporter.cs:line 130
+   at PPS.Product.Importer.App.Importer.ProductImport.ImportProductsFromCsvCommandHandler.Handle(ImportProductsFromCsvCommand request, CancellationToken cancellationToken) in C:\git\pps-product\src\app\PPS.Product.Importer.App\Importer\ProductImport\ImportProductsFromCsv.cs:line 35
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`1.<>c__DisplayClass1_0.<<Handle>g__Handler|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`1.Handle(Object request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at PPS.Product.Importer.App.Infrastructure.Job.CommandsExecutor.ExecuteCommand(MediatorSerializedObject mediatorSerializedObject, PerformContext performContext, CancellationToken cancellationToken) in C:\git\pps-product\src\app\PPS.Product.Importer.App\Infrastructure\Job\CommandsExecutor.cs:line 63
+   at InvokeStub_TaskAwaiter.GetResult(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+ClientConnectionId:d41c1b66-c257-417d-8c7b-37921e4eac21
+Error Number:515,State:2,Class:16
